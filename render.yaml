@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: captcha-solver
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    buildCommand: docker build -t captcha-solver .
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PORT
+        value: 8000
